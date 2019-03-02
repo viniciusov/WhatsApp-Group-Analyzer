@@ -88,7 +88,7 @@ color_list = list(colors.keys())
 #               Create Bar Chart                   #
 #--------------------------------------------------#
 
-plt.figure(figsize=(10,6))
+plt.figure(figsize=(len(final_result)/2,len(final_result)/4))
 bars = plt.bar(range(len(final_result)), final_result.values(), align='center')
 
 for n,bar in enumerate(bars): #Set different color for each bar
@@ -119,11 +119,30 @@ for x,n in final_result.items():
 labels = result_new.keys()
 sizes = result_new.values()
 explode = np.zeros(len(result_new))
-explode[-1] = 0.1
+explode[-1] = 0.05
 
 plt.figure() #Pie chart as a new figure
-plt.pie(sizes, explode=explode, labels=labels, pctdistance=0.8, autopct='%1.1f%%',
-        shadow=True, startangle=90, colors=color_list[len(unique_names)-len(result_new):])
+plt.pie(sizes, explode=explode, labels=labels, pctdistance=0.8, autopct='%1.1f%%', startangle=90, colors=color_list[len(unique_names)-len(result_new):])
 plt.axis('equal')  #Ensures pie chart is drawn as a circle.
 
 plt.savefig('pic2.png', bbox_inches='tight')
+
+#--------------------------------------------------#
+#		   Create Report                   #
+#--------------------------------------------------#
+
+import pandas as pd
+from pandas.plotting import table
+
+df = pd.DataFrame(reversed(final_result.items()),index=range(1,len(final_result)+1),columns=['CONTACT','MESSAGES'])
+
+fig,ax = plt.subplots(figsize=(8, len(final_result)/4)) # no visible frame
+ax.xaxis.set_visible(False)  # hide the x axis
+ax.yaxis.set_visible(False)  # hide the y axis
+ax.set_frame_on(False)  # no visible frame, uncomment if size is ok
+
+table = table(ax, df, loc='center', colWidths=[0.25]*len(df.columns))  # where df is your data frame
+table.auto_set_font_size(False) # Activate set fontsize manually
+table.set_fontsize(10) # if ++fontsize is necessary ++colWidths
+
+plt.savefig('pic3.png', bbox_inches='tight')
