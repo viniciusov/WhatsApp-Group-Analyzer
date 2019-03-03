@@ -2,7 +2,7 @@
 # coding: utf-8
 
 #----------------------------------------------------------------------#
-# Copyright (C) 2019, Vinícius Orsi Valente (viniciusov@hotmail.com)   #
+# Copyright (C) 2019, Vinícius Orsi alente (viniciusov@hotmail.com)   #
 #                                                                      #
 # This file is part of WhatsApp-Group-Analyzer.                        #
 #                                                                      # 
@@ -49,7 +49,7 @@ with open("Chat.txt", encoding="utf8") as f:
 
 clean_messages = []
 for x in messages:
-    if re.match('\d{1}[/]\d{2}[/]\d{2}', x) is not None: 
+    if re.match('\d{1}[/]\d{2}[/]\d{2}', x) is not None: #check if there is any number 
         clean_messages.append(x[17:])
 
 for n,x in enumerate(clean_messages):
@@ -57,9 +57,9 @@ for n,x in enumerate(clean_messages):
 
 names = []
 for x in clean_messages:
-    if re.match('\d{2}\s\d{5}[-]\d{4}', x[5:18]) is not None: #Look for tel numbers
-        names.append(x[5:18])
-    elif not ('added' in x or 'removed' in x or 'changed' in x or 'left' in x) and x != '':
+    if re.match('[*]\d[*]', x[:18]) is not None: #Look for tel numbers
+        names.append(x[:18])
+    elif not ('added' in x or 'removed' in x or 'changed' in x or 'left' in x or 'created' in x or 'end-to-end encryption' in x) and x != '':
         names.append(x)
 
 unique_names = set(names)
@@ -75,6 +75,8 @@ final_result = OrderedDict((sorted(result.items(), key=lambda x: x[1])))
 #--------------------------------------------------#
 
 colors = dict(mcolors.BASE_COLORS, **mcolors.CSS4_COLORS) 
+for color in ['black','k','white','w','snow','floralwhite','cornsilk','ivory','lightyellow','beige','blanchedalmond','darkblue','midnightblue','blue','b','azure','aliceblue','g','r','c','m','y','grey','lightgrey','darkgray']:
+    del colors[color]
 
 color_indexes = random.sample(range(len(colors)), len(unique_names))
 
@@ -93,13 +95,13 @@ bars = plt.bar(range(len(final_result)), final_result.values(), align='center')
 
 for n,bar in enumerate(bars): #Set different color for each bar
     bar.set_color(color_list[n])
-    
+ 
 plt.yticks(np.arange(0, max(final_result.values())+500, step=500))
 plt.xticks(range(len(final_result)), final_result.keys(), rotation='90')
 
 for bar in bars: #Print numbers above bars
     yval = bar.get_height()
-    plt.text(bar.get_x(),yval+100, yval, fontsize=8)
+    plt.text(bar.get_x(),yval+25, yval, fontsize=8)
 
 plt.savefig('pic1.png', bbox_inches='tight')
 
@@ -138,7 +140,7 @@ ax.xaxis.set_visible(False)  # hide the x axis
 ax.yaxis.set_visible(False)  # hide the y axis
 ax.set_frame_on(False)  # no visible frame, uncomment if size is ok
 
-table = table(ax, df, loc='center', colWidths=[0.25]*len(df.columns))  # where df is your data frame
+table = table(ax, df, loc='center', colWidths=[0.28]*len(df.columns))  # where df is your data frame
 table.auto_set_font_size(False) # Activate set fontsize manually
 table.set_fontsize(10) # if ++fontsize is necessary ++colWidths
 
