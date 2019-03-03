@@ -128,11 +128,8 @@ plt.axis('equal')  #Ensures pie chart is drawn as a circle.
 plt.savefig('pic2.png', bbox_inches='tight')
 
 #--------------------------------------------------#
-#		   Create Report                   #
+#		           Create Report                   #
 #--------------------------------------------------#
-
-import pandas as pd
-from pandas.plotting import table
 
 df = pd.DataFrame(reversed(final_result.items()),index=range(1,len(final_result)+1),columns=['CONTACT','MESSAGES'])
 
