@@ -2,7 +2,7 @@
 Automatically generates Charts and a Report from your WhatsApp Group Chat
 
 ## Requirements
-- Phyton 3 installed in your OS (Instructions about Installation in https://realpython.com/installing-python/)
+- Python 3 installed in your OS (Instructions about Installation in https://realpython.com/installing-python/)
 - In your Terminal or Command Prompt, run `pip install numpy matplotlib pandas` to install the required libraries
 
 ## How Use it
