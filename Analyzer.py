@@ -55,12 +55,32 @@ for x in messages:
 for n,x in enumerate(clean_messages):
     clean_messages[n]=x.split(':')[0]
 
+exclude_list = ['added', 
+		'removed',
+		'changed',
+		'updated',
+		'left',
+		'created',
+		'end-to-end encryption',
+		'adicionou',
+		'adicionado',
+		'removeu',
+		'removido',
+		'atualizou',
+		'atualizado',
+		'criou',
+		'criptografia de ponta-a-ponta']	
+
 names = []
 for x in clean_messages:
-    if re.match('[*]\d[*]', x[:18]) is not None: #Look for tel numbers
-        names.append(x[:18])
-    elif not ('added' in x or 'removed' in x or 'changed' in x or 'left' in x or 'created' in x or 'end-to-end encryption' in x) and x != '':
-        names.append(x)
+	if re.match('\*\d{4}\*', x[:18]) is not None: #Look for tel numbers
+		names.append(x[:18])
+	elif x != '':
+		for exp in exclude_list:
+			if exp in x:
+				break
+		else:
+			names.append(x)
 
 unique_names = set(names)
 
@@ -75,8 +95,28 @@ final_result = OrderedDict((sorted(result.items(), key=lambda x: x[1])))
 #--------------------------------------------------#
 
 colors = dict(mcolors.BASE_COLORS, **mcolors.CSS4_COLORS) 
-for color in ['black','k','white','w','snow','floralwhite','cornsilk','ivory','lightyellow','beige','blanchedalmond','darkblue','midnightblue','blue','b','azure','aliceblue','g','r','c','m','y','grey','lightgrey','darkgray']:
-    del colors[color]
+
+exclude_color = ['black',
+				'white',
+				'snow',
+				'floralwhite',
+				'cornsilk',
+				'ivory',
+				'lightyellow',
+				'beige',
+				'blanchedalmond',
+				'darkblue',
+				'midnightblue',
+				'blue',
+				'azure',
+				'aliceblue',
+				'k','w','b','g','r','c','m','y',
+				'grey',
+				'lightgrey',
+				'darkgray']
+
+for color in exclude_color:
+	del colors[color]
 
 color_indexes = random.sample(range(len(colors)), len(unique_names))
 
