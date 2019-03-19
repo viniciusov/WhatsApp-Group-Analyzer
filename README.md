@@ -23,6 +23,8 @@ Automatically generates Charts and a Report from your WhatsApp Group Chat
 - `pic1.png` -> A Pie Chart showing the number of sent messages (in percentage) by users who have more than 10% of participation
 - `pic1.png` -> A Report showing the number of messages by each user
 
+*For privacy reasons the telephone numbers in the sample_images folder have been hidden.*
+
 ## License
 This project is under GPLv3 license.
 
