@@ -17,6 +17,7 @@ Automatically generates Charts and a Report from your WhatsApp Group Chat
 #### 3. Rename it to `Chat.txt`
 
 #### 4. Click on `Analyzer.py` file or run `python3 Analyzer.py` in your Terminal or Command Prompt
+*If you get an error when trying to run 'python3 Analyzer.py', try 'python Analyzer.py' instead.*
 
 #### 5. Now you should have 3 generated files in the same folder:
 - `pic1.png` -> A Bar Chart showing the number of messages sent by each group user
