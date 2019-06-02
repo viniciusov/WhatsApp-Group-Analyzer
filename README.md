@@ -1,6 +1,9 @@
 # WhatsApp-Group-Analyzer
 Automatically generates Charts and a Report from your WhatsApp Group Chat
 
+![Example1](https://github.com/viniciusov/WhatsApp-Group-Analyzer/blob/master/sample_images/pic1.png)
+![Example2](https://github.com/viniciusov/WhatsApp-Group-Analyzer/blob/master/sample_images/pic2.png)
+
 ## Requirements
 - Python 3 installed in your OS (Instructions about Installation in https://realpython.com/installing-python/)
 - In your Terminal or Command Prompt, run `pip install numpy matplotlib pandas` to install the required libraries
